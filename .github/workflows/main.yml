@@ -1,0 +1,30 @@
+name: Hello World
+# ↑ Display name shown in the Actions tab sidebar
+
+on:
+  push:
+    branches: [main]
+  # ↑ Trigger this workflow every time code is pushed to the 'main' branch
+
+jobs:
+  greet:
+    # ↑ Job identifier — must be unique within this workflow
+    runs-on: ubuntu-latest
+    # ↑ Use the latest GitHub-hosted Ubuntu runner
+
+    steps:
+      - name: Say hello
+        # ↑ Human-readable label shown in logs
+        run: echo "Hello, GitHub Actions!"
+        # ↑ Execute a shell command on the runner
+
+      - name: Print runner details
+        run: |
+          echo "Runner OS   : $RUNNER_OS"
+          echo "Runner Arch : $RUNNER_ARCH"
+          echo "Workspace   : $GITHUB_WORKSPACE"
+        # ↑ The pipe (|) starts a multi-line YAML scalar — each line runs sequentially in the same shell
+
+      - name: Show date and time
+        run: date -u
+        # ↑ -u flag outputs time in UTC to avoid timezone ambiguity
